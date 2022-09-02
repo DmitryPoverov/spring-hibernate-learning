@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="windowBean" class="ru.clevertec.spring.specialist._03_dependencyInjection.implementations.WoodWindow">
+    </bean>
+
+    <bean id="woodDoorBean" class="ru.clevertec.spring.specialist._03_dependencyInjection.implementations.WoodDoor" scope="prototype">
+    </bean>
+
+    <bean id="metalDoorBean" class="ru.clevertec.spring.specialist._03_dependencyInjection.implementations.MetalDoor">
+    </bean>
+
+    <bean id="brickBean" class="ru.clevertec.spring.specialist._03_dependencyInjection.implementations.Brick" scope="prototype">
+    </bean>
+
+    <bean id="logBean" class="ru.clevertec.spring.specialist._03_dependencyInjection.implementations.Wood" scope="prototype">
+    </bean>
+
+    <bean id="houseBean" class="ru.clevertec.spring.specialist._03_dependencyInjection.implementations.House" p:height="3">
+        <constructor-arg ref="windowBean"/>
+<!--        <property name="height"/>-->
+<!--        <property name="wall" ref="brickBean"/>-->
+        <property name="wall">
+            <bean class="ru.clevertec.spring.specialist._03_dependencyInjection.implementations.Brick"/>
+        </property>
+<!--        <property name="doors">
+            <list>
+                <ref bean="metalDoorBean"/>
+                <ref bean="woodDoorBean"/>
+            </list>
+        </property>-->
+        <property name="doors">
+            <map>
+                <entry key="A" value-ref="metalDoorBean"/>
+                <entry key="B" value-ref="woodDoorBean"/>
+            </map>
+        </property>
+    </bean>
+    <bean id="mainWindowBean" class="ru.clevertec.spring.specialist._03_dependencyInjection.MainWindow"
+          factory-method="getInstance" init-method="openConnection" destroy-method="closeConnection">
+    </bean>
+
+</beans>

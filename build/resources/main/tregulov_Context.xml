@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="classpath:tregulov_pet.properties"/>
+
+    <bean id="anyPetBean"
+          class="ru.clevertec.spring.tregulov._1_spring.implementations.Dog"/>
+    <!--Добавляем животное через конструктор.
+        <bean id="petPersonBean"
+              class="ru.clevertec.spring.tregulov._1_spring.implementations.Person">
+            <constructor-arg ref="anyPetBean"/>
+        </bean>-->
+
+    <!--Добавляем животное через setter.-->
+    <bean id="petPersonBean"
+          class="ru.clevertec.spring.tregulov._1_spring.implementations.Person">
+        <property name="pet" ref="anyPetBean"/>
+        <property name="surname" value="${person.surname}"/>
+        <property name="age" value="${person.age}"/>
+    </bean>
+
+</beans>

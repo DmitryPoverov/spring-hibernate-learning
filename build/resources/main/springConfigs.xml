@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="beanForPerson_AllArgs" class="ru.clevertec.spring.specialist._01_xml.PersonBean">
+        <constructor-arg value="18"/>               <!--Default value for int age. Spring will convert String to int-->
+        <constructor-arg value="Bob_Xml"/>          <!--Default value for String name-->
+    </bean>
+
+    <bean id="beanForPerson_NoArgs" class="ru.clevertec.spring.specialist._01_xml.PersonBean">         <!--None values in this bean-->
+    </bean>
+
+</beans>
